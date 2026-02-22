@@ -15,9 +15,6 @@ vim.opt.signcolumn = "yes"
 vim.wo.number = true
 vim.wo.relativenumber = true
 
---Spell check
-vim.opt_local.spell = true
-vim.opt_local.spelllang = { "de" , "en"}
 
 --Window title
 vim.opt.title = true
@@ -33,4 +30,17 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 300 })
   end,
+})
+
+--Spell check
+local spell_types = { "text", "plaintex", "typst", "gitcommit", "markdown" }
+vim.opt.spell = false
+vim.api.nvim_create_augroup("Spellcheck", { clear = true })
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = "Spellcheck", 
+  pattern = spell_types,
+  callback = function()
+    vim.opt_local.spell = true
+  end,
+  desc = "Enable spellcheck for defined filetypes",
 })
