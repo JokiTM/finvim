@@ -24,7 +24,7 @@ return
 --        }
 --    ),
 
-    vim.lsp.enable({"lua_ls", "ltex", "jdtls"})
+    vim.lsp.enable({"lua_ls", "ltex", "jdtls", "hyprls"})
 },
 
 {
